@@ -1,0 +1,55 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+
+public class BusTimes {
+	public static void main(String[] args){
+		int abSAACtoCastle[]={646,744,902,1000,1058,1216,1314,1432,1530,1628,1726,1844,1942};
+		int abEPSLtoCastle[]={648,746,904,1002,110,1218,1316,1434,1532,1630,1728,1846,1944};
+		int abCAPtoCastle[]={711,809,927,1025,1123,1241,1339,1557,1555,1653,1751,1909,2007};
+		
+		int abCAPtoCampus[]={613,711,809,927,1025,1123,1241,1339,1457,1555,1653,1751,1909,2007};
+		int abMCTBTtoCampus[]={631,729,827,945,1043,1141,1259,1357,1515,1613,1711,1809,1927,2007};
+		int abMLRtoCampus[]={641,739,837,955,1053,1151,1309,1407,1525,1623,1721,1819,1937,2035};
+		int abSAACtoCampus[]={646,744,902,1000,1058,1216,1314,1432,1530,1628,1726,1844,1952,2040};
+		
+		
+		String CurrentTimeString = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
+		int CT = Integer.parseInt(CurrentTimeString);/*makes string to int called CT*/
+		System.out.println("The current time is: " + CurrentTimeString);
+		int BestTime = BestTime(abCAPtoCampus,CT);
+		System.out.println("The next Bus Times are:");
+		System.out.println(" AB Line " + BestTime);
+		int ArrivalTime = ArrivalTime(abSAACtoCampus,BestTime);
+		System.out.println("The next Buses have arrive at:");
+		System.out.println(" AB Line " + ArrivalTime);
+	}
+	public static int ArrivalTime(int arr[],int BT){
+		int i=0;
+		int AT = 0;
+			for (i=0; i<arr.length; i++){
+				if (arr[i]>BT){
+					AT = arr[i];
+					return AT;
+				}
+				else{
+					continue;
+				}
+			}
+			return AT;
+		}
+	public static int BestTime(int arr[],int CT){
+		int i=0;
+		int BT = 0;
+			for (i=0; i<arr.length; i++){
+				if (arr[i]>CT){
+					BT = arr[i];
+					return BT;
+				}
+				else{
+					continue;
+				}
+			}
+			return BT;
+		}
+}
